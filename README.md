@@ -22,3 +22,58 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# テーブル設計
+
+## organizersテーブル
+
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| name               | string  | null: false               |
+| company_name       | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+
+### Association
+- has_many :exhibitions
+
+
+## exhibitions テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| title            | string     | null: false                    | 
+| subtitle         | string     |                                |
+| venue            | string     | null: false                    |
+| description      | text       |                                |
+| start_date       | date       | null: false                    |
+| end_date         | date       | null: false                    |
+| basic_open_time  | time       | null: false                    |
+| basic_close_time | time       | null: false                    |
+| close_day        | string     |                                |
+| special_open_day | string     |                                |
+| admission        | string     | null: false                    |
+| address          | string     | null: false                    |
+| access           | string     |                                |
+| phone_number     | string     |                                |
+| url              | string     |                                |
+| prefecture_id    | integer    | null: false                    |
+| organizer        | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :organizer
+- has_many :events
+- has_one_attached :image
+
+
+## events テーブル
+
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| open_date  | date       | null: false                    | 
+| open_time  | time       | null: false                    |
+| close_time | time       | null: false                    |
+| exhibition | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :exhibition
