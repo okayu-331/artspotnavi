@@ -1,2 +1,135 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
+  </nav>
+</header>
+
+<main>
+  <div class="top-contents text-center py-5">
+    <h1 class="display-4">Hello</h1>
+  </div>
+
+  <div class="search-contents container-fluid my-5 py-5">
+    <h2 class="text-center mb-5">展覧会を探す</h2>
+    <form">
+      <div class="form-group">
+        <label for="area">エリア</label>
+        <select class="custom-select" id="area">
+          <option selected>すべてのエリア</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="form-row">
+          <div class="col">
+            <label for="date">日付</label>
+            <input type="date" id="date" class="form-control">
+          </div>
+          <div class="col">
+            <label for="date">時刻</label>
+            <input type="time" id="time" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="keyword">展覧会名・会場名</label>
+        <input type="text" id="keyword" class="form-control" placeholder="キーワードを入力">
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-warning">検索</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="py-5 exhibition-lists">
+    <h2 class="text-center mb-5">Exhibitions</h2>
+    <div class="d-flex justify-content-center flex-wrap">
+      <div class="card m-3 shadow">
+        <%= image_tag "demo01.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+      <div class="card m-3 shadow">
+        <%= image_tag "demo06_tate.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+      <div class="card m-3 shadow">
+        <%= image_tag "demo01.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+      <div class="card m-3 shadow">
+        <%= image_tag "demo06_tate", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+      <div class="card m-3 shadow">
+        <%= image_tag "demo01.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+      <div class="card m-3 shadow">
+        <%= image_tag "demo06_tate.jpg", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
+          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：2020.06.23 - 10.25</p>
+          <p class="mb-0">東京</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center py-5">
+      <%= link_to "展覧会情報一覧を見る", "#", class: "btn btn-warning"%>
+    </div>
+  </div>
+
+  <div class="bg-light text-center py-5">
+    <h6 class="font-weight-bold">展覧会主催者の方へ</h6>
+    <p>展覧会情報を掲載しませんか？</p>
+    <div class="grid-6">
+      <%= link_to "新規会員登録", "#" %>
+      <%= link_to "ログイン", "#" %>
+    </div>
+    <div>
+    </div>
+  </div>
+</main>
+
+<footer class="container-fluid bg-dark py-3 text-center text-muted">
+  Copyright 2020 ArtSpotNavi
+</footer>
