@@ -4,6 +4,8 @@ class Organizer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :exhibitions
+  
   with_options presence: true, format: { with: /\A.+\z/ } do
     validates :name
     validates :company_name
