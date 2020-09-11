@@ -21,7 +21,7 @@ class ExhibitionsController < ApplicationController
       :title, :subtitle, :venue, :description,
       :start_date, :end_date, :basic_open_time, :basic_close_time,
       :close_day, :special_open_day, :admission, :address, :access,
-      :phone_number,:url, :prefecture_id
+      :phone_number,:url, :prefecture_id, :image
     ).merge(organizer_id: current_organizer.id)    
   end
 end
