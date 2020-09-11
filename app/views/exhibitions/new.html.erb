@@ -1,0 +1,97 @@
+<div class="row box-top-line">
+  <div class="col-lg-6 col-sm-8 mx-auto px-4 mb-5">
+    <div class="text-center">
+      <%= link_to image_tag("artspotnavi_logo.png", class:"second-header-icon"), "/" %>
+    </div>
+    <h2 class="py-5">展覧会情報の新規登録</h2>
+
+    <%= form_with model: @exhibition, url: exhibitions_path, local: true do |f| %>
+
+      <%= render 'shared/error_messages', model: f.object %>
+
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:title, "展覧会タイトル") %>
+        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:subtitle, "サブタイトル") %>
+        <%= f.text_field :subtitle, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:venue, "会場名") %>
+        <%= f.text_field :venue, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:description, "説明文") %>
+        <%= f.text_area :description, autofocus: true, class: 'form-control', rows:"4" %>
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+          <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+          <%= f.label(:start_date, "会期初日") %>
+          <%= f.date_field :start_date, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-6">
+          <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+          <%= f.label(:end_date, "会期終了日") %>
+          <%= f.date_field :end_date, autofocus: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+          <%= f.label(:basic_open_time, "通常開館時刻") %>
+          <%= f.time_field :basic_open_time, autofocus: true, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-6">
+          <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+          <%= f.label(:basic_close_time, "通常閉館時刻") %>
+          <%= f.time_field :basic_close_time, autofocus: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label(:close_day, "休館日") %>
+        <%= f.text_field :close_day, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:special_open_day, "特別開館日") %>
+        <%= f.text_field :special_open_day, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:admission, "入場料") %>
+        <%= f.text_field :admission, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:address, "住所") %>
+        <%= f.text_field :address, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:access, "アクセス") %>
+        <%= f.text_field :access, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:phone_number, "電話番号") %>
+        <%= f.text_field :phone_number, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label(:url, "ウェブサイト") %>
+        <%= f.text_field :url, autofocus: true, class: 'form-control', placeholder:"https://" %>
+      </div>
+      <div class="form-group">
+      <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:prefecture_id, "都道府県") %>
+        <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"form-control"} %>
+        <small class="form-text text-muted">
+          タグ表示用に選択ください
+        </small>
+      </div>
+      <div class="form-group mt-5">
+        <%= f.submit "登録する", class: "btn btn-warning btn-block btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+</div>
