@@ -1,0 +1,44 @@
+<div class="row box-top-line">
+  <div class="col-lg-6 col-sm-8 mx-auto px-4 mb-5">
+    <div class="text-center">
+      <%= link_to image_tag("artspotnavi_logo.png", class:"second-header-icon"), "/" %>
+    </div>
+    <h2 class="py-5">主催者会員登録</h2>
+    <%= form_with model: @organizer, url: organizer_registration_path, local: true do |f| %>
+      <%= render "organizers/shared/error_messages", resource: resource %>
+      
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:name, "お名前") %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:company_name, "ご所属") %>
+        <%= f.text_field :company_name, autofocus: true, class: 'form-control' %>
+        <small class="form-text text-muted">
+          個人の方は個人事業主とご入力ください。
+        </small>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:email, "メールアドレス") %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:password, "パスワード") %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control', placeholder:"８文字以上の半角英数字" %>
+      </div>
+      <div class="form-group">
+        <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+        <%= f.label(:password_confirmation, "パスワード確認") %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+      </div>
+      <div class="form-group mt-5">
+        <%= f.submit "登録する", class: "btn btn-warning btn-block btn-lg" %>
+      </div>
+    <% end %>
+    <%= render "organizers/shared/links" %>
+  </div>
+</div>
