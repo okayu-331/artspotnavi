@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
+  </nav>
+</header>
+
+  <div class="py-5 exhibition-lists">
+    <h2 class="text-center mb-5">Exhibitions</h2>
+    <div class="d-flex justify-content-center flex-wrap">
+
+    <% @exhibitions.each do |exhibition| %>
+      <div class="card m-3 shadow">
+        <%= image_tag exhibition.image, class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title font-weight-bold"><%= exhibition.title %></h5>
+          <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+          <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
+        </div>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
