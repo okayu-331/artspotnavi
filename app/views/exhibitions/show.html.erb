@@ -1,0 +1,91 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
+  </nav>
+</header>
+
+<div class="container-fluid exhibition-wrapper">
+  <div class="exhibition-header-contents py-4">
+    <h1><%= @exhibition.title %></h1>
+    <h2><%= @exhibition.subtitle %></h2>
+    <p><%= @exhibition.venue %></p>
+  </div>
+
+  <div class="exhibition-image-contents mx-auto">
+    <%= image_tag @exhibition.image %>
+  </div>
+
+  <div class="exhibition-text-contents my-5 px-5">
+    <p><%= safe_join(@exhibition.description.split("\n"), tag(:br)) %></p>
+  </div>
+
+  <div class="exhibition-info-contents mb-5">
+    <p class="exhibition-info-heading bg-warning text-white font-weight-bold px-3 py-1 mb-0">
+      infomation
+    </p>
+    <div class="px-md-5">
+      <table class="table table-borderless">
+        <tbody class="exhibition-info-table">
+          <tr>
+            <th scope="row">会期</th>
+            <td><%= @exhibition.start_date %> 〜 <%= @exhibition.end_date %></td>
+          </tr>
+          <tr>
+            <th scope="row">会場</th>
+            <td><%= @exhibition.venue %></td>
+          </tr>
+          <tr>
+            <th scope="row">住所</th>
+            <td><%= @exhibition.address %></td>
+          </tr>
+          <% if @exhibition.phone_number.present? %>
+            <tr>
+              <th scope="row">電話</th>
+              <td><%= @exhibition.phone_number %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th scope="row">開館時間</th>
+            <td><%= @exhibition.basic_open_time.strftime('%H:%M') %> 〜 <%= @exhibition.basic_close_time.strftime('%H:%M') %></td>
+          </tr>
+          <% if @exhibition.close_day.present? %>
+            <tr>
+              <th scope="row">休館日</th>
+              <td><%= @exhibition.close_day %></td>
+            </tr>
+          <% end %>
+          <% if @exhibition.special_open_day.present? %>
+            <tr>
+              <th scope="row">特別開館日</th>
+              <td><%= @exhibition.special_open_day %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th scope="row">観覧料</th>
+            <td><%= @exhibition.admission %></td>
+          </tr>
+          <% if @exhibition.access.present? %>
+            <tr>
+              <th scope="row">アクセス</th>
+              <td><%= @exhibition.access %></td>
+            </tr>
+          <% end %>
+          <% if @exhibition.url.present? %>
+            <tr>
+              <th scope="row">URL</th>
+              <td><%= @exhibition.url %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light text-center py-5">
+  <%= link_to "展覧会情報一覧", exhibitions_path , class: "btn btn-warning"%>
+</div>
+
+<footer class="container-fluid bg-dark py-3 text-center text-muted">
+  Copyright 2020 ArtSpotNavi
+</footer>
