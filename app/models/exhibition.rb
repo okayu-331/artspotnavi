@@ -8,6 +8,7 @@ class Exhibition < ApplicationRecord
   with_options presence: true do
     validates :title
     validates :venue
+    validates :image
     validates :start_date
     validates :end_date
     validates :basic_open_time
