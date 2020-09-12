@@ -124,7 +124,10 @@
     <div>
       <%= link_to "新規会員登録", new_organizer_registration_path %>
       <%= link_to "ログイン", new_organizer_session_path %>
+    </div>
+    <div>
       <% if organizer_signed_in? %>
+        <%= link_to "マイページ", organizer_path(current_organizer.id) %>
         <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete %>
       <% end %>
     </div>
