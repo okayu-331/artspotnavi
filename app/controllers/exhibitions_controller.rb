@@ -1,6 +1,6 @@
 class ExhibitionsController < ApplicationController
   def index
-    @exhibitions = Exhibition.all
+    @exhibitions = Exhibition.includes(:organizer)
   end
   
   def new
