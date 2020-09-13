@@ -3,16 +3,17 @@
     <div class="text-center">
       <%= link_to image_tag("artspotnavi_logo.png", class:"second-header-icon"), "/" %>
     </div>
-    <h2 class="py-5">展覧会情報の新規登録</h2>
+    <h2 class="py-5">展覧会情報の編集</h2>
 
-    <%= form_with model: @exhibition, url: exhibitions_path, local: true do |f| %>
+    <%= form_with model: @exhibition, local: true do |f| %>
 
       <%= render 'shared/error_messages', model: f.object %>
 
       <%= render partial: "form", locals: { f: f } %>
-      
+
       <div class="form-group mt-5">
-        <%= f.submit "登録する", class: "btn btn-warning btn-block btn-lg" %>
+        <%= f.submit "編集する", class: "btn btn-warning btn-block btn-lg" %>
+        <%= link_to "マイページに戻る", organizer_path(current_organizer.id), class: "btn btn-outline-secondary btn-block my-4 mx-auto w-50"%>
       </div>
     <% end %>
   </div>

@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="mx-4">
-          <%= link_to "編集する", "#" , class: "btn btn-warning btn-block border-secondary"%>
+          <%= link_to "編集する", edit_exhibition_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
           <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, class: "btn btn-outline-secondary btn-block mb-3"%>
         </div>
       </div>
