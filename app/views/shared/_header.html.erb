@@ -1,0 +1,11 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
+  <% if organizer_signed_in? %>
+    <div class="form-inline">
+      <%= link_to "マイページ", organizer_path(current_organizer.id), class: "btn btn-outline-warning"%>
+      <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete, class: "btn btn-outline-warning ml-2"%>
+    </div>
+  <% end %>
+  </nav>
+</header>
