@@ -1,39 +1,36 @@
-<header>
-  <nav class="navbar navbar-light bg-light">
-    <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
-  </nav>
-</header>
+<%= render "shared/header" %>
 
 <div class="mypage-top-contents text-center py-5">
-  <%= link_to "展覧会情報を登録する", new_exhibition_path , class: "btn btn-warning"%>
+  <h2 class="text-center mb-5">展覧会情報を新規登録する</h2>
+  <%= link_to "新規登録", new_exhibition_path , class: "btn btn-warning"%>
 </div>
 
-  <div class="py-5 exhibition-lists">
-    <h2 class="text-center mb-5"><%= "#{current_organizer.name}さんの展覧会一覧" %></h2>
-    <div class="d-flex justify-content-center flex-wrap">
+<div class="py-5 exhibition-lists">
+  <h2 class="text-center mb-5"><%= current_organizer.name %>さんの展覧会一覧</h2>
+  <div class="d-flex justify-content-center flex-wrap">
 
-    <% @exhibitions.each do |exhibition| %>
-      <div class="mb-5 shadow-sm">
-        <div class="card m-3 exhibition-card">
-          <%= image_tag exhibition.image, class: "card-img-top" %>
-          <div class="card-body">
-            <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
-            <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
-          </div>
-          <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-            <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
-            <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
-          </div>
+  <% @exhibitions.each do |exhibition| %>
+    <div class="mb-5 shadow-sm">
+      <div class="card m-md-3 exhibition-card">
+        <%= image_tag exhibition.image, class: "card-img-top" %>
+        <div class="card-body">
+          <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
+          <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
         </div>
-        <div class="mx-4">
-          <%= link_to "編集する", edit_exhibition_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
-          <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, class: "btn btn-outline-secondary btn-block mb-3"%>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+          <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
         </div>
       </div>
-    <% end %>
-
+      <div class="mx-auto w-75">
+        <%= link_to "編集する", edit_exhibition_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
+        <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, class: "btn btn-outline-secondary btn-block mb-3"%>
+      </div>
     </div>
+  <% end %>
+
   </div>
+</div>
 
 <div class="bg-light text-center py-5">
   <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete, class: "btn btn-secondary"%>
