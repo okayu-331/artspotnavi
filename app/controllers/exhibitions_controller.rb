@@ -1,4 +1,6 @@
 class ExhibitionsController < ApplicationController
+  before_action :set_exhibition, only: [:show, :destroy]
+
   def index
     @exhibitions = Exhibition.includes(:organizer)
   end
@@ -17,10 +19,18 @@ class ExhibitionsController < ApplicationController
   end
 
   def show
-    @exhibition = Exhibition.find(params[:id])
+  end
+
+  def destroy
+    if @exhibition.destroy
+      redirect_to organizer_path(current_organizer.id)
+    else
+      render organizer_path(current_organizer.id)
+    end 
   end
 
   private
+  
   def exhibition_params
     params.require(:exhibition).permit(
       :title, :subtitle, :venue, :description,
@@ -28,5 +38,9 @@ class ExhibitionsController < ApplicationController
       :close_day, :special_open_day, :admission, :address, :access,
       :phone_number,:url, :prefecture_id, :image
     ).merge(organizer_id: current_organizer.id)
+  end
+
+  def set_exhibition
+    @exhibition = Exhibition.find(params[:id])
   end
 end
