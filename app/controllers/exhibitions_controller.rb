@@ -1,5 +1,5 @@
 class ExhibitionsController < ApplicationController
-  before_action :set_exhibition, only: [:show, :destroy]
+  before_action :set_exhibition, only: [:show, :edit, :update, :destroy]
 
   def index
     @exhibitions = Exhibition.includes(:organizer)
@@ -19,6 +19,20 @@ class ExhibitionsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+    if current_organizer.id != @exhibition.organizer.id
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @exhibition.update(exhibition_params)
+      redirect_to exhibition_path(params[:id])
+    else
+      render :edit
+    end
   end
 
   def destroy
