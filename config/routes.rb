@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     }
   root "home#index"
   resources :home, only: :index
-  resources :exhibitions
+  resources :exhibitions do
+    resources :events, only: :index
+  end
   resources :organizers, only: :show
 end
