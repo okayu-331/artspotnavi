@@ -1,0 +1,32 @@
+<p><%= @exhibition.title %>カレンダー</p>
+
+<div class="w-75 mx-auto mb-5" id='calendar'></div>
+
+<div class="new-event-color w-50 p-3 mx-auto">
+  <p>登録フォーム</p>
+
+  <%= form_with model: [@exhibition, @event], url: exhibition_events_path, local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+      <%= f.label(:open_date, "開館日") %>
+      <%= f.date_field :open_date, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+    <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+      <%= f.label(:open_time, "開館時間") %>
+      <%= f.time_field :open_time, autofocus: true, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+      <%= f.label(:close_time, "閉館時間") %>
+      <%= f.time_field :close_time, autofocus: true, class: 'form-control' %>
+    </div>
+
+    <div class="form-group mt-5">
+      <%= f.submit "登録する", class: "btn btn-warning btn-block btn-lg" %>
+    </div>
+  <% end %>
+</div>
+
