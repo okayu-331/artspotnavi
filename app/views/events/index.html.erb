@@ -16,7 +16,7 @@
       <td><%= event.open_date %></td>
       <td><%= event.open_time.strftime('%H:%M') %></td>
       <td><%= event.close_time.strftime('%H:%M') %></td>
-      <td>編集</td>
+      <td><%= link_to '編集', edit_exhibition_event_path(event.exhibition.id, event.id), method: :get %></td>
       <td>削除</td>
     </tr>
   <% end %>
