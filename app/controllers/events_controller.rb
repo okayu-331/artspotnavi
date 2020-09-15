@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:edit, :update, :destroy]
+
   def index
     @exhibition = Exhibition.find(params[:exhibition_id])
     @event = Event.new
@@ -16,11 +18,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to exhibition_events_path(@event.exhibition.id)
     else
@@ -28,8 +28,20 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    if @event.destroy
+      redirect_to exhibition_events_path(@event.exhibition.id)
+    else
+      render exhibition_events_path(@event.exhibition.id)
+    end 
+  end
+
   private
   
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
   def event_params
     params.require(:event).permit(:open_date, :open_time, :close_time).merge(exhibition_id: params[:exhibition_id])
   end
