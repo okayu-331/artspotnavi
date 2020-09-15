@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def index
     @exhibition = Exhibition.find(params[:exhibition_id])
     @event = Event.new
-    @events = @exhibition.events
+    @events = @exhibition.events.order("open_date ASC")
   end
   
   def create
