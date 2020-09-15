@@ -1,8 +1,29 @@
-<p><%= @exhibition.title %>カレンダー</p>
+<p><%= @exhibition.title %>開館日カレンダー</p>
 
-<div class="w-75 mx-auto mb-5" id='calendar'></div>
+<table class="table table-sm w-50 my-5 mx-auto border">
+  <thead>
+    <tr>
+      <th scope="col">開館日</th>
+      <th scope="col">開館時間</th>
+      <th scope="col">閉館時間</th>
+      <th scope="col">編集</th>
+      <th scope="col">削除</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= event.open_date %></td>
+      <td><%= event.open_time.strftime('%H:%M') %></td>
+      <td><%= event.close_time.strftime('%H:%M') %></td>
+      <td><%= link_to '編集', edit_exhibition_event_path(event.exhibition.id, event.id), method: :get %></td>
+      <td>削除</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 
-<div class="new-event-color w-50 p-3 mx-auto">
+<div class="new-event-color w-50 p-3 mb-5 mx-auto">
   <p>登録フォーム</p>
 
   <%= form_with model: [@exhibition, @event], url: exhibition_events_path, local: true do |f| %>
@@ -30,3 +51,4 @@
   <% end %>
 </div>
 
+<div class="w-75 mx-auto mb-5" id='calendar'></div>
