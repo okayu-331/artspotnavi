@@ -3,6 +3,10 @@ class EventsController < ApplicationController
 
   def index
     @exhibition = Exhibition.find(params[:exhibition_id])
+    if current_organizer.id != @exhibition.organizer.id
+      redirect_to root_path
+    end
+
     @event = Event.new
     @events = @exhibition.events.order("open_date ASC")
   end
@@ -18,6 +22,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+    if current_organizer.id != @event.organizer.id
+      redirect_to root_path
+    end
   end
 
   def update
