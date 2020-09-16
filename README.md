@@ -36,6 +36,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :exhibitions
+- has_many :events
 
 
 ## exhibitions テーブル
@@ -74,6 +75,8 @@ Things you may want to cover:
 | open_time  | time       | null: false                    |
 | close_time | time       | null: false                    |
 | exhibition | references | null: false, foreign_key: true |
+| organizer  | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :exhibition
+- belongs_to :organizer

@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 2020_09_14_025255) do
     t.time "open_time", null: false
     t.time "close_time", null: false
     t.bigint "exhibition_id"
+    t.bigint "organizer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exhibition_id"], name: "index_events_on_exhibition_id"
+    t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
   create_table "exhibitions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -82,5 +84,6 @@ ActiveRecord::Schema.define(version: 2020_09_14_025255) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "events", "exhibitions"
+  add_foreign_key "events", "organizers"
   add_foreign_key "exhibitions", "organizers"
 end
