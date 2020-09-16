@@ -34,7 +34,9 @@ class ExhibitionEvent
       
       events = []
       dayarr.each do |day|
-        events << Event.new(:open_date => day, :open_time => basic_open_time, :close_time => basic_close_time, :exhibition_id => exhibition.id)
+        events << Event.new(
+          open_date: day, open_time: basic_open_time, close_time: basic_close_time,
+          exhibition_id: exhibition.id, organizer_id: exhibition.organizer.id)
       end
       Event.import events
   end
