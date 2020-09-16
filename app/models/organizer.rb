@@ -5,6 +5,7 @@ class Organizer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :exhibitions
+  has_many :events
   
   with_options presence: true, format: { with: /\A.+\z/ } do
     validates :name

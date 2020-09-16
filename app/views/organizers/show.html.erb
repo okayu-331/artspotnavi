@@ -24,6 +24,7 @@
       </div>
       <div class="mx-auto w-75">
         <%= link_to "編集する", edit_exhibition_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
+        <%= link_to "開館日時を設定する", exhibition_events_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
         <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, class: "btn btn-outline-secondary btn-block mb-3"%>
       </div>
     </div>

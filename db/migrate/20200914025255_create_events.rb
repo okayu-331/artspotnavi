@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration[6.0]
       t.time :open_time,  null: false
       t.time :close_time, null: false
       t.references :exhibition, foreign_key: true
+      t.references :organizer, foreign_key: true
       t.timestamps
     end
   end
