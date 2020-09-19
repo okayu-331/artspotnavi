@@ -2,21 +2,55 @@
 
 <div class="py-5 exhibition-lists">
   <h2 class="text-center mb-5">検索結果一覧</h2>
-  <div class="d-flex justify-content-center flex-wrap">
 
-  <% @exhibitions.each do |exhibition| %>
-    <div class="card m-3 shadow exhibition-card">
-      <%= image_tag exhibition.image, class: "card-img-top" %>
-      <div class="card-body">
-        <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
-        <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
+<% unless @exhibitions.blank? %>
+
+  <div class="d-flex justify-content-center flex-wrap">
+    <% @exhibitions.each do |exhibition| %>
+      <div class="card m-3 shadow exhibition-card">
+        <%= image_tag exhibition.image, class: "card-img-top" %>
+        <div class="card-body">
+          <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
+          <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
+        </div>
+        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+          <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+          <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
+        </div>
       </div>
-      <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-        <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
-        <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
-      </div>
-    </div>
-  <% end %>
-  
+    <% end %>
   </div>
+
+<% else %>
+
+  <p class="text-center">条件に該当する展覧会は見つかりませんでした。</p>
+  <div class="search-wrapper col-lg-8 col-sm-10 mx-auto my-5 p-3 px-md-5">
+    <h2 class="text-center mb-3">条件を変更して探す</h2>
+    <%= form_with(scope: :search, url:search_exhibitions_path, method: :get, local: true) do |f| %>
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <%= f.label(:prefecture_id, "エリア") %>
+          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"form-control"} %>
+        </div>
+        <div class="form-group col-md-5">
+          <%= f.label(:open_date, "開館日") %>
+          <%= f.date_field :open_date, value: Date.today, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-5">
+        <%= f.label(:open_time, "時刻") %>
+        <%= f.time_field :open_time, value: "13:00", class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label(:keyword, "展覧会タイトル") %>
+        <%= f.text_field :keyword, placeholder: "展覧会タイトルを入力", class: 'form-control' %>
+      </div>
+      <div class="form-group text-center">
+        <%= f.submit "検索", class: "btn btn-warning px-5" %>
+      </div>
+    <% end %>
+  </div>
+
+<% end %>
+  
 </div>
