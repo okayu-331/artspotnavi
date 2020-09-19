@@ -28,7 +28,10 @@ class ExhibitionEvent
       organizer_id: organizer_id)
 
       dayarr = []
-      (start_date..end_date).each do |d|
+      date_start_date = Date.parse(start_date)
+      date_end_date = Date.parse(end_date)
+
+      (date_start_date..date_end_date).each do |d|
         dayarr << d
       end
       

@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_025255) do
     t.string "title", null: false
     t.string "subtitle"
     t.string "venue", null: false
-    t.string "description"
+    t.text "description"
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.time "basic_open_time", null: false

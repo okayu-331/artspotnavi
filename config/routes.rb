@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :home, only: :index
   resources :exhibitions do
     resources :events
+    collection do
+      get 'search'
+    end
   end
   resources :organizers, only: :show
 end
