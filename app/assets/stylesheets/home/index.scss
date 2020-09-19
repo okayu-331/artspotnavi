@@ -4,14 +4,32 @@
 }
 
 .top-contents {
-  height: 40vh;
-  background-color: #fdd35c; //仮置き
-  // background-image: image-url("");
-  // background-size: cover;
+  background-image: image-url('top_cover.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  height: 75vh;
+  position: relative;
+  margin-bottom: 180px;
 }
 
-.search-wrapper {
-  background-color: cornsilk;
+.top-contents-copy {
+  position: absolute;
+  top: 18%;
+  left: 55%;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+}
+
+.copy-text {
+  display: inline-block;
+}
+
+.top-search-wrapper {
+  background: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: 55%;
+  font-weight: bold;
 }
 
 .box-top-line {
@@ -26,4 +44,8 @@
 .second-header-icon {
   height: 50px;
   margin: 15px;
+}
+
+.organizer_info_contents > a {
+  color: #333;
 }
