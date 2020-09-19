@@ -44,6 +44,11 @@ class ExhibitionsController < ApplicationController
     end 
   end
 
+  def search
+    @search_params = exhibition_search_params
+    @exhibitions = Exhibition.search(@search_params).joins(:events)
+  end
+  
   private
   
   def exhibition_params
@@ -53,6 +58,10 @@ class ExhibitionsController < ApplicationController
       :close_day, :special_open_day, :admission, :address, :access,
       :phone_number,:url, :prefecture_id, :image
     ).merge(organizer_id: current_organizer.id)
+  end
+
+  def exhibition_search_params
+      params.fetch(:search, {}).permit(:open_date, :open_time, :prefecture_id, :keyword)
   end
 
   def set_exhibition
