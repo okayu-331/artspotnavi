@@ -1,38 +1,38 @@
 <%= render "shared/header" %>
 
 <main>
-  <div class="top-contents text-center py-5">
-    <h1 class="display-4">Hello</h1>
+  <div class="top-contents">
+    <h2 class="top-contents-copy">
+      <span class="copy-text">展覧会を</span><span class="copy-text">探そう</span>
+    </h2>
+    <div class="top-search-wrapper col-lg-8 col-sm-10 mx-auto p-3 px-md-5">
+      <%= form_with(scope: :search, url:search_exhibitions_path, method: :get, local: true) do |f| %>
+        <div class="form-row">
+          <div class="form-group col-md-2">
+            <%= f.label(:prefecture_id, "エリア") %>
+            <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"form-control"} %>
+          </div>
+          <div class="form-group col-md-5">
+            <%= f.label(:open_date, "開館日") %>
+            <%= f.date_field :open_date, value: Date.today, class: 'form-control' %>
+          </div>
+          <div class="form-group col-md-5">
+            <%= f.label(:open_time, "時刻") %>
+            <%= f.time_field :open_time, value: "13:00", class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label(:keyword, "展覧会タイトル") %>
+          <%= f.text_field :keyword, placeholder: "展覧会タイトルを入力", class: 'form-control' %>
+        </div>
+        <div class="form-group text-center">
+          <%= f.submit "検索", class: "btn btn-warning px-5" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div class="search-wrapper col-lg-8 col-sm-10 mx-auto my-5 p-3 px-md-5">
-    <h2 class="text-center mb-3">展覧会を探す</h2>
-    <%= form_with(scope: :search, url:search_exhibitions_path, method: :get, local: true) do |f| %>
-      <div class="form-row">
-        <div class="form-group col-md-2">
-          <%= f.label(:prefecture_id, "エリア") %>
-          <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"form-control"} %>
-        </div>
-        <div class="form-group col-md-5">
-          <%= f.label(:open_date, "開館日") %>
-          <%= f.date_field :open_date, value: Date.today, class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-5">
-        <%= f.label(:open_time, "時刻") %>
-        <%= f.time_field :open_time, value: "13:00", class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label(:keyword, "展覧会タイトル") %>
-        <%= f.text_field :keyword, placeholder: "展覧会タイトルを入力", class: 'form-control' %>
-      </div>
-      <div class="form-group text-center">
-        <%= f.submit "検索", class: "btn btn-warning px-5" %>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="py-5 exhibition-lists">
+  <div class="py-5 exhibition-lists box-top-line">
     <h2 class="text-center mb-5">Exhibitions</h2>
     <div class="d-flex justify-content-center flex-wrap">
       <div class="card m-3 shadow">
@@ -109,17 +109,16 @@
 
   <div class="bg-light text-center py-5">
     <h6 class="font-weight-bold">展覧会主催者の方へ</h6>
-    <p>展覧会情報を掲載しませんか？</p>
-    <div>
-      <%= link_to "新規会員登録", new_organizer_registration_path %>
-      <%= link_to "ログイン", new_organizer_session_path %>
-    </div>
-    <div>
-      <%= link_to "展覧会情報の新規投稿", new_exhibition_path %>
-    </div>
+    <% unless organizer_signed_in? %>
+      <p>会員登録をして展覧会情報を掲載しませんか？</p>
+      <div class="organizer_info_contents">
+        <%= link_to "新規会員登録", new_organizer_registration_path, class: "mr-3" %>
+        <%= link_to "ログイン", new_organizer_session_path %>
+      </div>
+    <% else %>
+      <div class="organizer_info_contents">
+        <%= link_to "展覧会情報の新規投稿はこちら", new_exhibition_path %>
+      </div>
+    <% end %>
   </div>
 </main>
-
-<footer class="container-fluid bg-dark py-3 text-center text-muted">
-  Copyright 2020 ArtSpotNavi
-</footer>

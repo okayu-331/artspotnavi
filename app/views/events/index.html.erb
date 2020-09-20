@@ -1,54 +1,66 @@
-<p><%= @exhibition.title %>開館日カレンダー</p>
+<%= render "shared/header" %>
+<h3 class="text-center my-5"><%= @exhibition.title %>開館日一覧</h2>
 
-<table class="table table-sm w-50 my-5 mx-auto border">
-  <thead>
-    <tr>
-      <th scope="col">開館日</th>
-      <th scope="col">開館時間</th>
-      <th scope="col">閉館時間</th>
-      <th scope="col">編集</th>
-      <th scope="col">削除</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @events.each do |event| %>
-    <tr>
-      <td><%= event.open_date %></td>
-      <td><%= event.open_time.strftime('%H:%M') %></td>
-      <td><%= event.close_time.strftime('%H:%M') %></td>
-      <td><%= link_to '編集', edit_exhibition_event_path(event.exhibition.id, event.id), method: :get %></td>
-      <td><%= link_to "削除する", exhibition_event_path(event.exhibition.id, event.id), method: :delete %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-6 col-sm-8 mx-auto mb-5">
+      <table class="table table-sm mb-5 table-hover border">
+        <thead>
+          <tr>
+            <th scope="col">開館日</th>
+            <th scope="col">開館時間</th>
+            <th scope="col">閉館時間</th>
+            <th scope="col">編集</th>
+            <th scope="col">削除</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <td><%= event.open_date.strftime('%Y-%m-%d (%a)') %></td>
+            <td><%= event.open_time.strftime('%H:%M') %></td>
+            <td><%= event.close_time.strftime('%H:%M') %></td>
+            <td><%= link_to '編集', edit_exhibition_event_path(event.exhibition.id, event.id), method: :get %></td>
+            <td><%= link_to "削除する", exhibition_event_path(event.exhibition.id, event.id), method: :delete, data: {confirm: "削除しますか？"} %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<div class="new-event-color w-50 p-3 mb-5 mx-auto">
-  <p>登録フォーム</p>
+      <div class="new-event-color p-3">
+        <p class="font-weight-bold">開館日を追加する</p>
 
-  <%= form_with model: [@exhibition, @event], url: exhibition_events_path, local: true do |f| %>
-    <%= render 'shared/error_messages', model: f.object %>
+        <%= form_with model: [@exhibition, @event], url: exhibition_events_path, local: true do |f| %>
+          <%= render 'shared/error_messages', model: f.object %>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+              <%= f.label(:open_date, "開館日") %>
+              <%= f.date_field :open_date, class: 'form-control' %>
+            </div>
+            <div class="form-group col-md-4">
+            <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+              <%= f.label(:open_time, "開館時間") %>
+              <%= f.time_field :open_time, class: 'form-control' %>
+            </div>
+            <div class="form-group col-md-4">
+              <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
+              <%= f.label(:close_time, "閉館時間") %>
+              <%= f.time_field :close_time, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit "追加する", class: "btn btn-warning btn-block" %>
+          </div>
+        <% end %>
+      </div>
 
-    <div class="form-group">
-      <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
-      <%= f.label(:open_date, "開館日") %>
-      <%= f.date_field :open_date, autofocus: true, class: 'form-control' %>
     </div>
-    <div class="form-group">
-    <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
-      <%= f.label(:open_time, "開館時間") %>
-      <%= f.time_field :open_time, autofocus: true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
-      <%= f.label(:close_time, "閉館時間") %>
-      <%= f.time_field :close_time, autofocus: true, class: 'form-control' %>
-    </div>
-
-    <div class="form-group mt-5">
-      <%= f.submit "登録する", class: "btn btn-warning btn-block btn-lg" %>
-    </div>
-  <% end %>
+  </div>
 </div>
 
 <div class="w-75 mx-auto mb-5" id='calendar'></div>
+
+<div class="bg-light text-center py-5">
+  <%= link_to "マイページに戻る", organizer_path(current_organizer.id), class: "btn btn-outline-secondary px-5 mx-auto"%>
+</div>

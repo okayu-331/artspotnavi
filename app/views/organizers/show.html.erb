@@ -25,7 +25,7 @@
       <div class="mx-auto w-75">
         <%= link_to "編集する", edit_exhibition_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
         <%= link_to "開館日時を設定する", exhibition_events_path(exhibition.id), method: :get, class: "btn btn-warning btn-block border-secondary"%>
-        <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, class: "btn btn-outline-secondary btn-block mb-3"%>
+        <%= link_to "削除する", exhibition_path(exhibition.id), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-outline-secondary btn-block mb-3"%>
       </div>
     </div>
   <% end %>
@@ -36,7 +36,3 @@
 <div class="bg-light text-center py-5">
   <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete, class: "btn btn-secondary"%>
 </div>
-
-<footer class="container-fluid bg-dark py-3 text-center text-muted">
-  Copyright 2020 ArtSpotNavi
-</footer>
