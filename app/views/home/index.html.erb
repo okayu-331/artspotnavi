@@ -33,77 +33,25 @@
   </div>
 
   <div class="py-5 exhibition-lists box-top-line">
-    <h2 class="text-center mb-5">Exhibitions</h2>
+    <h2 class="text-center mb-5">新着の展覧会情報</h2>
     <div class="d-flex justify-content-center flex-wrap">
-      <div class="card m-3 shadow">
-        <%= image_tag "demo01.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
+
+      <% @exhibitions.each do |exhibition| %>
+        <div class="card m-3 shadow exhibition-card">
+          <%= image_tag exhibition.image, class: "card-img-top" %>
+          <div class="card-body">
+            <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
+            <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
+          </div>
+          <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
+            <p class="mb-0">会期：<%= exhibition.start_date %> - <%= exhibition.end_date %></p>
+            <p class="mb-0 border rounded"><%= exhibition.prefecture.name %></p>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
-      <div class="card m-3 shadow">
-        <%= image_tag "demo06_tate.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
-      <div class="card m-3 shadow">
-        <%= image_tag "demo01.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
-      <div class="card m-3 shadow">
-        <%= image_tag "demo06_tate", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
-      <div class="card m-3 shadow">
-        <%= image_tag "demo01.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
-      <div class="card m-3 shadow">
-        <%= image_tag "demo06_tate.jpg", class: "card-img-top" %>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">鴻池朋子 ちゅうがえり</h5>
-          <p class="card-text font-weight-bold">アーティゾン美術館</p>
-        </div>
-        <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
-          <p class="mb-0">会期：2020.06.23 - 10.25</p>
-          <p class="mb-0">東京</p>
-        </div>
-      </div>
+      <% end %>
     </div>
     <div class="text-center py-5">
-      <%= link_to "展覧会情報一覧を見る", exhibitions_path , class: "btn btn-warning"%>
+      <%= link_to "すべての展覧会情報を見る", exhibitions_path , class: "btn btn-warning btn-lg px-5"%>
     </div>
   </div>
 
