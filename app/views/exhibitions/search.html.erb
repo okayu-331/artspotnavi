@@ -10,7 +10,7 @@
       <div class="card m-3 shadow exhibition-card">
         <%= image_tag exhibition.images[0], class: "card-img-top" %>
         <div class="card-body">
-          <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
+          <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link", data: {"turbolinks"=>false}  %></h5>
           <p class="card-text font-weight-bold"><%= exhibition.venue %></p>
         </div>
         <div class="card-footer bg-transparent border-top-0 d-flex justify-content-between">
