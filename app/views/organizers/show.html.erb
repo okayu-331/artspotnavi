@@ -12,7 +12,7 @@
   <% @exhibitions.each do |exhibition| %>
     <div class="mb-5 shadow-sm">
       <div class="card m-md-3 exhibition-card">
-        <%= image_tag exhibition.image, class: "card-img-top" %>
+        <%= image_tag exhibition.images[0], class: "card-img-top" %>
         <div class="card-body">
           <h5><%= link_to exhibition.title, exhibition_path(exhibition.id), method: :get, class: "card-title font-weight-bold stretched-link" %></h5>
           <p class="card-text font-weight-bold"><%= exhibition.venue %></p>

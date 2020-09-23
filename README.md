@@ -64,7 +64,7 @@ Things you may want to cover:
 ### Association
 - belongs_to :organizer
 - has_many :events
-- has_one_attached :image
+- has_many_attached :images
 
 
 ## events テーブル
