@@ -4,12 +4,12 @@ class ExhibitionEvent
   attr_accessor :title, :subtitle, :venue, :description,
   :start_date, :end_date, :basic_open_time, :basic_close_time,
   :close_day, :special_open_day, :admission, :address, :access,
-  :phone_number,:url, :prefecture_id, :image, :organizer_id, :id
+  :phone_number,:url, :prefecture_id, :images, :organizer_id, :id
 
   with_options presence: true do
     validates :title
     validates :venue
-    validates :image
+    validates :images
     validates :start_date
     validates :end_date
     validates :basic_open_time
@@ -24,7 +24,7 @@ class ExhibitionEvent
       title: title, subtitle: subtitle, venue: venue, description: description, 
       start_date: start_date, end_date: end_date, basic_open_time: basic_open_time, basic_close_time: basic_close_time,
       close_day: close_day, special_open_day: special_open_day, admission: admission, address: address, access: access,
-      phone_number: phone_number, url: url, prefecture_id: prefecture_id, image: image,
+      phone_number: phone_number, url: url, prefecture_id: prefecture_id, images: images,
       organizer_id: organizer_id)
 
       dayarr = []

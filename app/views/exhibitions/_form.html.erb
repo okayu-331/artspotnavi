@@ -18,8 +18,8 @@
       </div>
       <div class="form-group">
         <span class="indispensable mx-2 p-1 rounded-pill small">必須</span>
-        <%= f.label(:image, "画像") %>
-        <%= f.file_field :image, id:"item-image", class: 'form-control border-0', accept:"image/jpeg,image/png,image/gif" %>
+        <%= f.label(:images, "画像") %>
+        <%= f.file_field :images, name: 'exhibition_event[images][]', multiple: true, id:"item-image", class: 'form-control border-0', accept:"image/jpeg,image/png,image/gif" %>
         <small class="form-text text-muted">
           jpeg、png、gif形式が登録可能です。
         </small>
