@@ -35,3 +35,90 @@
 .exhibition-info-table>tr + tr {
   border-top: 1px dashed orange;
 }
+
+.input-label-image {
+  margin: 5px auto;
+  background: rgba(220, 200, 200, 0.1);
+  color: #333;
+  transition-duration: 0.4s;
+  display: block;
+  position: relative;
+  width: 80%;
+  height: 50px;
+  border: 2px solid orange;
+  border-radius: 100vh;
+}
+
+.input-label-image:hover {
+  background: rgba(255, 165, 0, 0.1);
+  color: rgba(255, 165, 0, 0.8);
+  transition-duration: 0.2s;
+}
+
+.input-label-image::after {
+  content: "画像を選択する";
+  line-height: 46px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  border-radius: 100vh;
+}
+
+.input-label-image input[type="file"] {
+  display: none;
+}
+
+.preview-area {
+  margin: 10px 10px 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-element {
+  margin: 5px 10px 5px 5px;
+  width: 100px;
+}
+
+.preview-area img {
+  width: 100%;
+  height: 100px;
+  box-shadow: 2px 2px 4px gray;
+  object-fit: cover;
+  position: relative;
+}
+
+.preview-remove-btn {
+  background-color: lightgray;
+  width: 90%;
+  height: 25px;
+  margin: 5px auto 0;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.preview-remove-btn::after{
+  content: "削除する";
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+}
+
+.preview-remove-btn:hover {
+  opacity: 0.8;
+}
+
+.input_image_file .material-icons {
+  font-size: 40px;
+  line-height: 96px;
+}
+
+.hide-label {
+  display: none;
+}
