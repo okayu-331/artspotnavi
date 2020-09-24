@@ -1,6 +1,6 @@
 class Exhibition < ApplicationRecord
   belongs_to :organizer
-  has_many :events
+  has_many :events, dependent: :destroy
   has_many_attached :images
 
   extend ActiveHash::Associations::ActiveRecordExtensions
