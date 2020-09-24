@@ -29,7 +29,7 @@ class ExhibitionsController < ApplicationController
   end
 
   def update
-    if @exhibition.update(exhibition_params)
+    if @exhibition.update(exhibition_edit_params)
       redirect_to exhibition_path(params[:id])
     else
       render :edit
@@ -53,6 +53,15 @@ class ExhibitionsController < ApplicationController
   
   def exhibition_params
     params.require(:exhibition_event).permit(
+      :title, :subtitle, :venue, :description,
+      :start_date, :end_date, :basic_open_time, :basic_close_time,
+      :close_day, :special_open_day, :admission, :address, :access,
+      :phone_number,:url, :prefecture_id, images: []
+    ).merge(organizer_id: current_organizer.id)
+  end
+
+  def exhibition_edit_params
+    params.require(:exhibition).permit(
       :title, :subtitle, :venue, :description,
       :start_date, :end_date, :basic_open_time, :basic_close_time,
       :close_day, :special_open_day, :admission, :address, :access,
