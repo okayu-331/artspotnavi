@@ -19,6 +19,21 @@ class ExhibitionEvent
     validates :prefecture_id
   end
 
+  validate :basic_open_time_should_be_before_basic_close_time
+  validate :start_date_should_be_before_end_date
+
+  def start_date_should_be_before_end_date
+    if start_date.present? && end_date.present? && start_date > end_date
+      errors.add(:exhibition, "start date should be before end date")
+    end
+  end
+
+  def basic_open_time_should_be_before_basic_close_time
+    if basic_open_time.present? && basic_close_time.present? && basic_open_time > basic_close_time
+      errors.add(:exhibition, "basic open time should be before basic close time")
+    end
+  end
+
   def save
     exhibition = Exhibition.create(
       title: title, subtitle: subtitle, venue: venue, description: description, 
