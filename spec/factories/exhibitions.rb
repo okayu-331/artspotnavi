@@ -17,5 +17,9 @@ FactoryBot.define do
     url { Faker::Internet.url(host: 'example.com') }
     prefecture_id { Faker::Number.within(range: 1..47) }
     association :organizer
+
+    after(:build) do |exhibition|
+      exhibition.images.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end
