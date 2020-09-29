@@ -1,18 +1,17 @@
 class EventsController < ApplicationController
+  before_action :set_exhibition, only: [:index, :create]
+  before_action :set_events, only: [:index, :create]
   before_action :set_event, only: [:edit, :update, :destroy]
-
+  
   def index
-    @exhibition = Exhibition.find(params[:exhibition_id])
     if current_organizer.id != @exhibition.organizer.id
       redirect_to root_path
     end
 
     @event = Event.new
-    @events = @exhibition.events.order("open_date ASC")
   end
   
   def create
-    exhibition = Exhibition.find(params[:exhibition_id])
     @event = Event.new(event_params)
     if @event.save
       redirect_to exhibition_events_path(@event.exhibition.id)
@@ -45,11 +44,19 @@ class EventsController < ApplicationController
 
   private
   
+  def set_exhibition
+    @exhibition = Exhibition.find(params[:exhibition_id])
+  end
+  
+  def set_events
+    @events = @exhibition.events.order("open_date ASC")
+  end
+  
   def set_event
     @event = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:open_date, :open_time, :close_time).merge(exhibition_id: params[:exhibition_id])
+    params.require(:event).permit(:open_date, :open_time, :close_time).merge(exhibition_id: params[:exhibition_id], organizer_id: current_organizer.id)
   end
 end
