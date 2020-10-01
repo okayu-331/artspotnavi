@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', function() {
 
       const inputFileHTML = document.createElement('input')
       inputFileHTML.setAttribute('id', `exhibition_image_${imageElementNum + 1}`)
-      inputFileHTML.setAttribute('name', 'exhibition_event[images][]')
+      inputFileHTML.setAttribute('name', 'exhibition[images][]')
       inputFileHTML.setAttribute('type', 'file')
 
       const inputLABEL = document.createElement('label')
