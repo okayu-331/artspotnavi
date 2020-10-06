@@ -1,11 +1,56 @@
 <header>
   <nav class="navbar navbar-light bg-light">
     <%= link_to image_tag("artspotnavi_logo.png", class:"header-icon"), "/", class: "navbar-brand" %>
-  <% if organizer_signed_in? %>
     <div class="form-inline">
-      <%= link_to "マイページ", organizer_path(current_organizer.id), class: "btn btn-outline-warning"%>
-      <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete, class: "btn btn-outline-warning ml-2"%>
+      <% if organizer_signed_in? %>
+        <%= link_to "マイページ", organizer_path(current_organizer.id), class: "btn btn-outline-warning"%>
+        <%= link_to "ログアウト", destroy_organizer_session_path, method: :delete, class: "btn btn-outline-warning ml-2"%>
+      <% end %>
+    <div class="search-icon" data-toggle="modal" data-target="#searchModal">
+      <i class="fas fa-search"></i>
     </div>
-  <% end %>
+    </div>
   </nav>
+
+  <!-- search Modal -->
+  <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="searchModalLabel">展覧会を探す</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+          <%= form_with(scope: :search, url:search_exhibitions_path, method: :get, local: true) do |f| %>
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <%= f.label(:prefecture_id, "エリア") %>
+                <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "---"}, {class:"form-control"} %>
+              </div>
+              <div class="form-group col-md-5">
+                <%= f.label(:open_date, "開館日") %>
+                <%= f.date_field :open_date, value: Date.today, class: 'form-control' %>
+              </div>
+              <div class="form-group col-md-5">
+                <%= f.label(:open_time, "時刻") %>
+                <%= f.time_field :open_time, value: "13:00", class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label(:keyword, "展覧会タイトル") %>
+              <%= f.text_field :keyword, placeholder: "展覧会タイトルを入力", class: 'form-control' %>
+            </div>
+            <div class="form-group text-center">
+              <%= f.submit "検索", class: "btn btn-warning px-5" %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </header>
